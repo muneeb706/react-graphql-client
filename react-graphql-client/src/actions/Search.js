@@ -39,10 +39,10 @@ const Search = ({ entity }) => {
   console.log(searchValues)
 
   return (
-    <div>
-      Search {ENTITY_TITLE[entity]}
+    <>
+       <h1 className="p-5">Search {ENTITY_TITLE[entity]}</h1>
       <OnChangeForm fields={entityFields[entity]} />
-    </div>
+    </>
   )
 }
 
