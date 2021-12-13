@@ -18,3 +18,19 @@ export const LIST_PATIENTS = gql`
     }
   }
 `
+
+export const VISITS_BY_PATIENT_CLINIC = gql`
+  query visitsByPatientClinic($patientName: String!, $clinicName: String!) {
+    visitsByPatientClinic(patientName: $patientName, clinicName: $clinicName) {
+      clinic {
+        name
+      }
+      patient {
+        name
+      }
+      purpose {
+        name
+      }
+    }
+  }
+`

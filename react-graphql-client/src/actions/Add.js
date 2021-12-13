@@ -18,7 +18,6 @@ const Add = ({ entity }) => {
   const [errorMessage, setErrorMessage] = useState()
 
   const onSubmit = (event) => {
-    console.log(event)
     add({
       variables: {
         input: {
