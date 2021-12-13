@@ -1,17 +1,19 @@
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import './App.css'
 import CustomNavbar from './custom-navbar/CustomNavbar'
 import Add from './actions/Add'
 import { ACTION } from './utils/constant'
 import Search from './actions/Search'
+import { ApolloProvider } from '@apollo/client'
+import { client } from './graphql/client'
+import List from './actions/List'
 
 const App = () => {
-  const [selectedAction, setSelectedAction] = useState(ACTION.clinic.search)
+  const [selectedAction, setSelectedAction] = useState(ACTION.clinic.list)
 
   const updateAction = (action) => {
     setSelectedAction(action)
   }
-
 
   const getEntityNameByAction = (action) => {
     let selectedEntities = Object.keys(ACTION).filter(
@@ -25,12 +27,17 @@ const App = () => {
     return entity ? true : false
   }
 
+  const isListAction = () => {
+    const entity = getEntityNameByAction('list')
+    return entity ? true : false
+  }
+
   const isSearchAction = () => {
     const entity = getEntityNameByAction('search')
     return entity ? true : false
   }
 
-  const selectedEntity = useMemo(()=>{
+  const selectedEntity = useMemo(() => {
     return selectedAction.split('-')[1]
   }, [selectedAction])
 
@@ -38,28 +45,55 @@ const App = () => {
     {
       id: 'clinic',
       title: 'Clinic',
-      onAdd: () => updateAction(ACTION.clinic.add),
-      onSearch: () => updateAction(ACTION.clinic.search),
+      actions: [
+        {
+          label: 'Add',
+          onAction: () => updateAction(ACTION.clinic.add),
+        },
+        {
+          label: 'List',
+          onAction: () => updateAction(ACTION.clinic.list),
+        },
+      ],
     },
     {
       id: 'patient',
       title: 'Patient',
-      onAdd: () => updateAction(ACTION.patient.add),
-      onSearch: () => updateAction(ACTION.patient.search),
+      actions: [
+        {
+          label: 'Add',
+          onAction: () => updateAction(ACTION.patient.add),
+        },
+        {
+          label: 'List',
+          onAction: () => updateAction(ACTION.patient.list),
+        },
+      ],
     },
     {
       id: 'visit',
       title: 'Visit',
-      onAdd: () => updateAction(ACTION.visit.add),
-      onSearch: () => updateAction(ACTION.visit.search),
+      actions: [
+        {
+          label: 'Add',
+          onAction: () => updateAction(ACTION.visit.add),
+        },
+        {
+          label: 'Search',
+          onAction: () => updateAction(ACTION.visit.search),
+        },
+      ],
     },
   ]
 
   return (
     <div className="App">
-      <CustomNavbar links={links} />
-      {isAddAction() && <Add entity={selectedEntity} />}
-      {isSearchAction() && <Search entity={selectedEntity}/>}
+      <ApolloProvider client={client}>
+        <CustomNavbar links={links} />
+        {isAddAction() && <Add entity={selectedEntity} />}
+        {isSearchAction() && <Search entity={selectedEntity} />}
+        {isListAction() && <List entity={selectedEntity} />}
+      </ApolloProvider>
     </div>
   )
 }

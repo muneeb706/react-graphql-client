@@ -1,11 +1,11 @@
 export const ACTION ={
     'clinic': {
       'add': 'add-clinic',
-      'search': 'search-clinic'
+      'list': 'list-clinic'
     },
     'patient': {
       'add': 'add-patient',
-      'search': 'search-patient'
+      'list': 'list-patient'
     },
     'visit': {
       'add': 'add-visit',

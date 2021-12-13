@@ -18,11 +18,9 @@ const CustomNavbar = ({ links }) => {
           >
             {links.map((link) => (
               <CustomNavDropdown
-                key={link.id}
                 id={link.id}
                 title={link.title}
-                onAdd={link.onAdd}
-                onSearch={link.onSearch}
+                actions={link.actions}
               />
             ))}
           </Nav>
