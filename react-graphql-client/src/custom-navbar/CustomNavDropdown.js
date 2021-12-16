@@ -1,15 +1,18 @@
-import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import React from 'react'
 
-const CustomNavDropdown = ({id, title, actions}) => {
-    
-    return (
-        <NavDropdown style={{marginRight: "10px"}} title={title}>
-            {actions.map(action=>(
-                <NavDropdown.Item onClick={()=>action.onAction()}>{action.label}</NavDropdown.Item>
-            ))}
-        </NavDropdown>
-    );
-};
+// uses bootstrap NavDropdown to create dropdown based on properties passed in actions
+const CustomNavDropdown = ({ title, actions }) => {
+  return (
+    <NavDropdown style={{ marginRight: '10px' }} title={title}>
+      {/* dropdown link for each action   */}
+      {actions.map((action) => (
+        <NavDropdown.Item onClick={() => action.onAction()}>
+          {action.label}
+        </NavDropdown.Item>
+      ))}
+    </NavDropdown>
+  )
+}
 
-export default CustomNavDropdown;
+export default CustomNavDropdown

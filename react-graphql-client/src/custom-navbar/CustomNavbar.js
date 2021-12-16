@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import CustomNavDropdown from './CustomNavDropdown'
 
+// uses bootstrap Navbar to create navbar based on properties passed in links
 const CustomNavbar = ({ links }) => {
   return (
     <Navbar bg="light" expand="lg">
@@ -17,11 +18,7 @@ const CustomNavbar = ({ links }) => {
             navbarScroll
           >
             {links.map((link) => (
-              <CustomNavDropdown
-                id={link.id}
-                title={link.title}
-                actions={link.actions}
-              />
+              <CustomNavDropdown title={link.title} actions={link.actions} />
             ))}
           </Nav>
         </Navbar.Collapse>

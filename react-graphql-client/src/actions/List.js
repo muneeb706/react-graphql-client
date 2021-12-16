@@ -6,14 +6,18 @@ import { ENTITY_TITLE } from '../utils/constant'
 import { LIST_CLINICS } from '../graphql/queries'
 import { LIST_PATIENTS } from '../graphql/queries'
 
+// list query for entities
 const ENTITY_LIST = {
   clinic: LIST_CLINICS,
   patient: LIST_PATIENTS,
 }
 
 const List = ({ entity }) => {
-  const { loading, error, data } = useQuery(ENTITY_LIST[entity])
+  // contains fetched data
   const [listData, setListData] = useState()
+
+  // fetching data
+  const { loading, error, data } = useQuery(ENTITY_LIST[entity])
 
   const entityName = ENTITY_TITLE[entity]
 
@@ -28,13 +32,12 @@ const List = ({ entity }) => {
     }
   }, [loading, error, data, entity])
 
-  console.log(data)
-
   return (
     <div>
       <h1 className="p-5">List of {entityName}s</h1>
 
       <ListGroup as="ol" numbered>
+        {/* displaying fetched data in list */}
         {listData &&
           listData.map((_data) => (
             <ListGroup.Item as="li">{_data.name}</ListGroup.Item>

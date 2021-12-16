@@ -1,12 +1,14 @@
-import React, { useMemo, useState } from 'react'
-import './App.css'
-import CustomNavbar from './custom-navbar/CustomNavbar'
-import Add from './actions/Add'
-import { ACTION } from './utils/constant'
-import Search from './actions/Search'
 import { ApolloProvider } from '@apollo/client'
+import React, { useMemo, useState } from 'react'
+
+import { ACTION } from './utils/constant'
 import { client } from './graphql/client'
+import Add from './actions/Add'
+import CustomNavbar from './custom-navbar/CustomNavbar'
 import List from './actions/List'
+import Search from './actions/Search'
+
+import './App.css'
 
 const App = () => {
   const [selectedAction, setSelectedAction] = useState(ACTION.clinic.list)
@@ -41,6 +43,7 @@ const App = () => {
     return selectedAction.split('-')[1]
   }, [selectedAction])
 
+  // schema for navbar links
   const links = [
     {
       id: 'clinic',

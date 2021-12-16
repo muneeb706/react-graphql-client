@@ -1,6 +1,7 @@
-import React from 'react'
 import Form from 'react-bootstrap/Form'
+import React from 'react'
 
+// form that captures form data on change of input field
 const OnChangeForm = ({ fields }) => {
   return (
     <div
@@ -8,6 +9,7 @@ const OnChangeForm = ({ fields }) => {
       style={{ textAlign: 'left' }}
     >
       <Form className="w-75">
+        {/* creating form elements / fields based on given schema */}
         {fields.map((field) => (
           <Form.Group key={field.id} className="mb-3">
             <Form.Label>{field.label}</Form.Label>
