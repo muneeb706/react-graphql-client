@@ -23,8 +23,3 @@ Follow the steps to run configure and run this project.
 1.  Run the React development server:
 
       `npm start`
-
-<br></br>
-Visit [Implementing GraphQL API client with Apollo Client package in React](https://muneebshahid.com/implementing-graphql-api-client-in-react/) for detailed explanation.
-<br></br>
-Have Fun :smile:      
